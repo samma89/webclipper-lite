@@ -89,7 +89,7 @@ $('#export-html').addEventListener('click', () => {
 
 $('#export-all').addEventListener('click', () => {
   if (!clips.length) return;
-  download(`clipper-lite-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(clips, null, 2), 'application/json');
+  download(`clipfolio-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(clips, null, 2), 'application/json');
 });
 
 $('#delete').addEventListener('click', async () => {

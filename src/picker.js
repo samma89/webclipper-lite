@@ -106,7 +106,7 @@
     return btn;
   });
   const panel = h('div', { class: 'panel' },
-    h('div', { class: 'head' }, h('span', {}, 'Clipper Lite'), h('button', { class: 'x', title: 'Close (Esc)', onclick: destroy }, '×')),
+    h('div', { class: 'head' }, h('span', {}, 'Clipfolio'), h('button', { class: 'x', title: 'Close (Esc)', onclick: destroy }, '×')),
     titleInput,
     saveBtn,
     h('div', { class: 'label' }, 'Clip format'),

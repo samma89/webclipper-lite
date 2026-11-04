@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Clipper Lite",
+  "name": "Clipfolio",
   "version": "1.0.0",
   "description": "Pick the content on a page, then save it to a local library. Export as Markdown, HTML or JSON.",
   "minimum_chrome_version": "102",
@@ -20,7 +20,7 @@
     "unlimitedStorage"
   ],
   "action": {
-    "default_title": "Clip this page",
+    "default_title": "Clipfolio \u2014 Clip this page",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png"

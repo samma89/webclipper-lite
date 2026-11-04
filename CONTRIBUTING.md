@@ -36,5 +36,5 @@ Please don't file public issues for vulnerabilities. Use GitHub's private vulner
 
 1. Bump `version` in both `manifest.json` and `package.json`, and add a section to `CHANGELOG.md`.
 2. Run `npm test && npm run package`.
-3. Upload `dist/webclipper-lite-v<version>.zip` in the Chrome Web Store developer dashboard.
+3. Upload `dist/clipfolio-v<version>.zip` in the Chrome Web Store developer dashboard.
 4. Tag the release (`git tag v<version>`) and push the tag.

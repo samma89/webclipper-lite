@@ -1,4 +1,5 @@
 // Minimal IndexedDB wrapper. Shared by the service worker, popup and library page.
+// Keep the original database name so existing clips survive the Clipfolio rename.
 const DB_NAME = 'clipper-lite';
 const STORE = 'clips';
 

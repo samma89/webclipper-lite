@@ -2,7 +2,7 @@
 
 _Last updated: 2026-10-29_
 
-Clipper Lite is built so that your data never leaves your device.
+Clipfolio is built so that your data never leaves your device.
 
 ## What the extension does with your data
 

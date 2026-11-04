@@ -1,5 +1,5 @@
 {
-  "name": "webclipper-lite",
+  "name": "clipfolio",
   "version": "1.0.0",
   "private": true,
   "description": "Chrome extension that clips the main content of a page into a private, local library.",

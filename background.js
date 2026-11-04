@@ -7,7 +7,7 @@ const MENU_ITEMS = [
   { id: 'fullpage', title: 'Quick clip: full page', contexts: ['page', 'selection'] },
   { id: 'selection', title: 'Quick clip: selection', contexts: ['selection'] },
   // Right-click on the toolbar icon. The only way in from pages the picker can't open on.
-  { id: 'library', title: 'Open library', contexts: ['action'] },
+  { id: 'library', title: 'Open Clipfolio library', contexts: ['action'] },
 ];
 
 const openLibrary = () => chrome.tabs.create({ url: chrome.runtime.getURL('library/library.html') });

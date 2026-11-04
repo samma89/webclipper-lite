@@ -1,8 +1,8 @@
-# Clipper Lite
+# Clipfolio
+
+<img src="branding/clipfolio-logo.png" width="128" alt="Clipfolio logo">
 
 A free, open-source Chrome extension that clips the part of a web page you care about into a **private library on your own device**. No account, no server, no tracking.
-
-> Clipper Lite is a working name and may change before the 1.0 store release.
 
 ## Features
 
@@ -27,7 +27,7 @@ A free, open-source Chrome extension that clips the part of a web page you care 
 
 ## Usage
 
-1. Open a page and click the Clipper Lite icon (or press `Alt+Shift+C`).
+1. Open a page and click the Clipfolio icon (or press `Alt+Shift+C`).
 2. Pick a clip format in the side panel and adjust the outlined region if needed.
 3. Click **Save clip**, then **Open library** to view it. You can also open the library any time by right-clicking the toolbar icon.
 
@@ -39,7 +39,7 @@ Pages the browser protects (`chrome://`, the Chrome Web Store, the PDF viewer) c
 |---|---|
 | `activeTab` | Read the current page only after you click the button, use the shortcut, or pick a menu item. |
 | `scripting` | Inject the picker and extraction code into that page. |
-| `contextMenus` | The right-click "Clip with picker…" and quick-clip items. |
+| `contextMenus` | The right-click "Clip with picker…" and quick-clip items, and "Open Clipfolio library" on the toolbar icon. |
 | `unlimitedStorage` | Full-page clips can be several megabytes, so the library isn't capped at the default quota. |
 
 There are no host permissions and no network requests. See [PRIVACY.md](PRIVACY.md).
@@ -49,7 +49,7 @@ There are no host permissions and no network requests. See [PRIVACY.md](PRIVACY.
 ```bash
 npm install        # installs jsdom for the tests
 npm test           # unit tests for extraction and Markdown export
-npm run package    # builds dist/webclipper-lite-v<version>.zip for the Web Store
+npm run package    # builds dist/clipfolio-v<version>.zip for the Web Store
 ```
 
 No build step: the extension runs straight from the source files.

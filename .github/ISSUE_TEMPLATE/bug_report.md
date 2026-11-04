@@ -14,4 +14,4 @@ labels: bug
 
 **Chrome version and OS**
 
-**Anything in the console?** (Open DevTools on the page and on `chrome://extensions` → Clipper Lite → "service worker".)
+**Anything in the console?** (Open DevTools on the page and on `chrome://extensions` → Clipfolio → "service worker".)
