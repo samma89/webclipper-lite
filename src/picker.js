@@ -223,6 +223,7 @@
 
   function renderPanel() {
     const mode = MODES.find((m) => m.id === state.mode);
+    if (!mode) return; // 'done': the panel now shows the saved message instead
     hint.textContent = mode.hint;
     for (const btn of modeButtons) {
       const on = btn.dataset.mode === state.mode;

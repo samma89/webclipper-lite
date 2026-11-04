@@ -154,6 +154,25 @@
     } while (count < 4000 && lw.nextNode() && cw.nextNode());
   }
 
+  // Clones lose layout, so ask the live page which elements it never renders (closed
+  // dropdown menus, dialogs, maintenance notes, <style>) and drop their copies. Must run
+  // before anything changes the clone's structure, so the two trees still line up.
+  // <wbr>, a video's <source>/<track> and display:contents wrappers have no box but matter.
+  const KEEP_UNRENDERED = /^(WBR|SOURCE|TRACK)$/;
+  function pruneUnrendered(live, clone) {
+    const doomed = [];
+    const visit = (l, c) => {
+      for (let i = 0; i < l.children.length && i < c.children.length; i++) {
+        const le = l.children[i];
+        if (le.namespaceURI !== 'http://www.w3.org/1999/xhtml') continue; // leave SVG/MathML intact
+        if (!le.getClientRects().length && !KEEP_UNRENDERED.test(le.tagName) && getComputedStyle(le).display !== 'contents') doomed.push(c.children[i]);
+        else visit(le, c.children[i]);
+      }
+    };
+    visit(live, clone);
+    doomed.forEach((n) => n.remove());
+  }
+
   function trimArticle(el, title) {
     el.querySelectorAll(ARTICLE_JUNK).forEach((n) => n.remove());
     el.querySelectorAll('div,section,ul,ol,p,span,header').forEach((n) => {
@@ -223,6 +242,7 @@
       for (const el of elements) {
         const clone = el.cloneNode(true);
         inlineTextStyles(el, clone);
+        pruneUnrendered(el, clone);
         stripUnsafe(clone);
         fixLazyImages(clone);
         if (auto || options.autoClean) trimArticle(clone, base.title);

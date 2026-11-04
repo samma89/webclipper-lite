@@ -7,10 +7,13 @@ const read = (p) => readFileSync(new URL(p, import.meta.url), 'utf8');
 const extractSource = read('../src/extract.js');
 const fixture = read('./fixtures/article.html');
 
-// jsdom has no layout engine, so pretend every element is rendered.
+// jsdom has no layout engine, so pretend every element is rendered, except ones marked
+// data-norects (no box of their own) or inside data-unrendered (like display:none).
 function load(html = fixture) {
   const dom = new JSDOM(html, { url: 'https://example.com/news/bees', runScripts: 'outside-only' });
-  dom.window.Element.prototype.getClientRects = function getClientRects() { return [{}]; };
+  dom.window.Element.prototype.getClientRects = function getClientRects() {
+    return this.hasAttribute('data-norects') || this.closest('[data-unrendered]') ? [] : [{}];
+  };
   dom.window.eval(extractSource);
   return dom.window;
 }
@@ -46,6 +49,18 @@ test('article clip makes URLs absolute and resolves lazy-loaded images', () => {
   const { html } = load().ClipperExtract.extract({ mode: 'article' });
   assert.match(html, /href="https:\/\/example\.com\/more\/bees"/);
   assert.match(html, /src="https:\/\/example\.com\/img\/hive\.jpg"/);
+});
+
+test('article clip drops content the page never renders but keeps <source> and display:contents', () => {
+  const html = fixture.replace('<p>Each cell', `<div class="lang-dropdown" data-unrendered><ul><li>English</li><li>Deutsch</li></ul></div>
+      <video controls><source data-norects src="/media/hive.mp4"></video>
+      <div style="display:contents" data-norects><p>Kept inside a contents wrapper, with commas, many words.</p></div>
+      <p>Each cell`);
+  const { html: out } = load(html).ClipperExtract.extract({ mode: 'article' });
+  assert.doesNotMatch(out, /Deutsch/);
+  assert.match(out, /hive\.mp4/);
+  assert.match(out, /Kept inside a contents wrapper/);
+  assert.match(out, /storing honey/);
 });
 
 test('picked elements are clipped in document order with nested picks collapsed', () => {

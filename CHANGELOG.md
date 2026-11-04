@@ -10,4 +10,6 @@ All notable changes to this project are documented here. The format follows [Kee
 - Clip formats: Article, Multi-select, Full page, and Selection.
 - Local library page with search, preview, delete, and per-clip Markdown/HTML export plus whole-library JSON export.
 - Right-click menu (picker and quick clips) and the `Alt+Shift+C` shortcut.
+- "Open library" when you right-click the toolbar icon, so the library is reachable from any page.
+- Article and multi-select clips leave out content the page never shows (closed menus, dialogs, hidden notes).
 - Unit tests for extraction and Markdown export.

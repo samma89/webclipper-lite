@@ -29,7 +29,7 @@ A free, open-source Chrome extension that clips the part of a web page you care 
 
 1. Open a page and click the Clipper Lite icon (or press `Alt+Shift+C`).
 2. Pick a clip format in the side panel and adjust the outlined region if needed.
-3. Click **Save clip**, then **Open library** to view it.
+3. Click **Save clip**, then **Open library** to view it. You can also open the library any time by right-clicking the toolbar icon.
 
 Pages the browser protects (`chrome://`, the Chrome Web Store, the PDF viewer) can't be clipped.
 
