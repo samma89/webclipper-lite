@@ -6,31 +6,124 @@
   <title>Clipfolio Library</title>
   <link rel="icon" type="image/png" href="../icons/icon32.png">
   <link rel="stylesheet" href="library.css">
+  <script src="theme-init.js"></script>
 </head>
 <body>
-  <aside>
+  <a class="skip" href="#grid">Skip to clips</a>
+
+  <header class="topbar">
+    <button id="rail-toggle" class="btn icon-btn rail-toggle" aria-label="Show folders and tags" aria-expanded="false" aria-controls="rail"></button>
     <div class="brand"><img src="../icons/icon48.png" width="28" height="28" alt=""><span>Clipfolio</span></div>
-    <div class="side-head">
-      <input id="search" type="search" placeholder="Search clips…" autocomplete="off">
-      <button id="export-all" title="Export every clip as one JSON file">Export all</button>
+    <div class="search">
+      <label class="sr-only" for="search">Search clips</label>
+      <input id="search" type="search" placeholder="Search clips   ( / )" autocomplete="off">
     </div>
-    <ul id="list"></ul>
-    <p id="empty" hidden>No clips yet. Use the toolbar button or right-click a page to clip.</p>
+    <div class="topbar-actions">
+      <div class="seg" role="group" aria-label="Layout">
+        <button id="view-grid" class="btn icon-btn" aria-pressed="true" aria-label="Card grid" title="Card grid"></button>
+        <button id="view-list" class="btn icon-btn" aria-pressed="false" aria-label="List" title="List"></button>
+      </div>
+      <label class="sr-only" for="sort">Sort clips</label>
+      <select id="sort" class="btn">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+        <option value="title">Title</option>
+        <option value="site">Site</option>
+      </select>
+      <button id="theme-btn" class="btn icon-btn" aria-label="Theme: auto" title="Theme: auto"></button>
+      <button id="import-btn" class="btn"><span class="btn-label">Import</span></button>
+      <button id="export-btn" class="btn" title="Download every clip, folder, tag, note and highlight as one JSON backup"><span class="btn-label">Export</span></button>
+      <input id="import-file" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav id="rail" class="rail" aria-label="Folders and tags">
+      <section aria-labelledby="rail-lib">
+        <h2 id="rail-lib" class="rail-h">Library</h2>
+        <ul id="rail-main" class="rail-list"></ul>
+      </section>
+      <section aria-labelledby="rail-folders">
+        <div class="rail-h-row">
+          <h2 id="rail-folders" class="rail-h">Folders</h2>
+          <button id="folder-add" class="btn icon-btn small" aria-label="New folder" title="New folder"></button>
+        </div>
+        <ul id="rail-folder-list" class="rail-list"></ul>
+      </section>
+      <section aria-labelledby="rail-tags">
+        <h2 id="rail-tags" class="rail-h">Tags</h2>
+        <div id="rail-tag-list" class="tag-cloud"></div>
+      </section>
+    </nav>
+
+    <main id="main" class="main">
+      <div class="results-head">
+        <p id="results" class="results" aria-live="polite" aria-atomic="true"></p>
+        <button id="clear-filters" class="btn small" hidden>Clear filters</button>
+      </div>
+      <div id="grid" class="grid" role="listbox" aria-label="Clips" aria-orientation="horizontal"></div>
+      <div id="empty" class="empty" hidden></div>
+    </main>
+  </div>
+
+  <div id="scrim" class="scrim" hidden></div>
+
+  <aside id="reader" class="reader" role="dialog" aria-modal="false" aria-labelledby="reader-title" inert>
+    <header class="reader-head">
+      <div class="reader-head-top">
+        <button id="reader-close" class="btn icon-btn" aria-label="Close reader" title="Close (Esc)"></button>
+        <div class="reader-titles">
+          <h2 id="reader-title" class="reader-title"></h2>
+          <a id="reader-source" class="reader-source" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+      </div>
+      <div class="reader-actions">
+        <label class="sr-only" for="reader-folder">Folder</label>
+        <select id="reader-folder" class="btn"></select>
+        <button id="export-md" class="btn">Markdown</button>
+        <button id="export-html" class="btn">HTML</button>
+        <button id="delete" class="btn danger">Delete</button>
+      </div>
+    </header>
+    <div class="reader-body">
+      <div class="tag-editor">
+        <label for="tag-input" class="field-label">Tags</label>
+        <div id="tag-chips" class="tag-editor-box">
+          <ul id="tag-list" class="chips"></ul>
+          <input id="tag-input" type="text" maxlength="40" placeholder="Add tag, press Enter" autocomplete="off">
+        </div>
+      </div>
+      <!-- No allow-scripts: clipped HTML can never run code. allow-same-origin is
+           added only so the parent page can read the user's text selection (see library.js). -->
+      <iframe id="viewer" class="viewer" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox" title="Clip content"></iframe>
+      <div class="notes">
+        <label for="note" class="field-label">Notes</label>
+        <textarea id="note" rows="4" placeholder="Your private note for this clip"></textarea>
+        <span id="note-status" class="hint" aria-live="polite"></span>
+      </div>
+      <div class="highlights">
+        <h3 class="field-label">Highlights</h3>
+        <p class="hint" id="hl-hint">Select text in the article, then press Highlight.</p>
+        <ul id="hl-list" class="hl-list"></ul>
+      </div>
+    </div>
   </aside>
-  <section>
-    <div id="toolbar" hidden>
-      <div class="meta">
-        <div id="clip-title" class="clip-title"></div>
-        <a id="clip-source" target="_blank" rel="noopener noreferrer"></a>
+
+  <button id="hl-btn" class="btn primary hl-btn" hidden>Highlight</button>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <dialog id="import-dialog" class="dialog" aria-labelledby="import-title">
+    <form method="dialog" id="import-form">
+      <h2 id="import-title">Import backup</h2>
+      <div id="import-body"></div>
+      <div class="dialog-actions">
+        <button value="cancel" class="btn" id="import-cancel">Cancel</button>
+        <button value="ok" class="btn primary" id="import-confirm">Import</button>
       </div>
-      <div class="actions">
-        <button id="export-md">Markdown</button>
-        <button id="export-html">HTML</button>
-        <button id="delete" class="danger">Delete</button>
-      </div>
-    </div>
-    <iframe id="viewer" sandbox="allow-popups allow-popups-to-escape-sandbox" title="Clip preview"></iframe>
-  </section>
+    </form>
+  </dialog>
+
   <script type="module" src="library.js"></script>
 </body>
 </html>

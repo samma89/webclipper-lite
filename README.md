@@ -12,8 +12,9 @@ A free, open-source Chrome extension that clips the part of a web page you care 
   - **Multi-select:** click blocks to add them, click a selected block to remove it, or click inside a selected block to cut that part out.
   - **Full page:** the whole page with its styles.
   - **Selection:** exactly the text you highlighted.
-- **Local library.** Browse and search everything you've clipped in a built-in library page.
-- **Export anywhere.** Download a clip as Markdown (with front matter) or standalone HTML, or export your whole library as JSON.
+- **Local library.** Browse and search everything you've clipped in a built-in library page, as a card grid or a list, in light or dark.
+- **Organize.** Sort clips into folders, add tags, write notes, and highlight passages while reading.
+- **Export anywhere.** Download a clip as Markdown (with front matter) or standalone HTML, or back up your whole library (clips and folders) as a JSON file and import it again later. Backups are local files; nothing is synced or uploaded.
 - **Right-click quick clips** and a keyboard shortcut (`Alt+Shift+C`, changeable at `chrome://extensions/shortcuts`).
 - **Minimal permissions.** It only touches a page when you ask it to.
 

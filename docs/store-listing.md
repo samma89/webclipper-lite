@@ -18,8 +18,8 @@ Click the toolbar button and Clipfolio finds the main content of the page, outli
 FEATURES
 • Smart detection of the main article or content
 • Article, Multi-select, Full page, and Selection clip formats
-• A built-in library with search and preview, one right-click away on the toolbar icon
-• Export any clip as Markdown or HTML, or export everything as JSON
+• A built-in library with search, folders, tags, notes and highlights, one right-click away on the toolbar icon
+• Export any clip as Markdown or HTML, or back up and restore everything as a local JSON file
 • Right-click menu and a keyboard shortcut (Alt+Shift+C)
 
 PRIVATE BY DESIGN

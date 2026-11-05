@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Clipfolio",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pick the content on a page, then save it to a local library. Export as Markdown, HTML or JSON.",
   "minimum_chrome_version": "102",
   "homepage_url": "https://github.com/samma89/webclipper-lite",
