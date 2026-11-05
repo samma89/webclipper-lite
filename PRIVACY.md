@@ -1,12 +1,14 @@
 # Privacy Policy
 
-_Last updated: 2026-10-29_
+_Last updated: 2026-11-05_
 
 Clipfolio is built so that your data never leaves your device.
 
 ## What the extension does with your data
 
 - **Clips stay local.** When you save a clip, its content (HTML, title, URL, and basic page metadata such as author and description) is stored in your browser's own IndexedDB storage for this extension.
+- **Organization stays local.** Folders, tags, notes, and text highlights are stored in the same local library. Display preferences such as theme, view, and sorting are stored locally in the browser.
+- **Local backups.** JSON backups contain saved clips and their organization data. Import reads a file you select on your device; it does not upload the file.
 - **No servers.** The extension has no backend and makes no network requests of its own. Nothing is uploaded, synced, or shared.
 - **No accounts.** There is nothing to sign in to.
 - **No analytics or tracking.** The extension collects no usage data, telemetry, crash reports, or identifiers.

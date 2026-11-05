@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
-## [1.1.0] - Unreleased
+## [1.1.0] - 2026-11-05
 
 ### Added
 - Redesigned library: card grid and dense list views, light/dark/auto theme, sort (newest, oldest, title, site), and keyboard navigation (`/` to search, arrows, Enter, Delete).

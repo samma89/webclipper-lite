@@ -19,13 +19,17 @@ FEATURES
 • Smart detection of the main article or content
 • Article, Multi-select, Full page, and Selection clip formats
 • A built-in library with search, folders, tags, notes and highlights, one right-click away on the toolbar icon
+• Card grid and compact list views, sorting, and light or dark themes
 • Export any clip as Markdown or HTML, or back up and restore everything as a local JSON file
+• Import older Clipfolio backups without overwriting existing clips
+• Keyboard navigation and undo after deleting a clip
 • Right-click menu and a keyboard shortcut (Alt+Shift+C)
 
 PRIVATE BY DESIGN
 • No account, no server, no analytics
 • Clips are stored only in your browser
 • Works only on the page you choose, only when you ask
+• Saved content may load images or styles from the original websites when viewed
 
 FREE AND OPEN SOURCE
 Source code: https://github.com/samma89/webclipper-lite (MIT license)
@@ -58,6 +62,6 @@ No host permissions are requested.
 | Asset | Size | Status |
 |---|---|---|
 | Store icon | 128×128 PNG | Ready: `icons/icon128.png` |
-| Screenshots | 1280×800 (1-5) | todo: capture the picker, multi-select, and library |
-| Small promo tile | 440×280 | todo |
-| Marquee promo tile | 1400×560 | optional |
+| Screenshots | 1280×800 (1-5) | Ready: choose up to five from `branding/store-assets/v1.1/` |
+| Small promo tile | 440×280 | Ready: `branding/store-assets/promo-small.jpg` |
+| Marquee promo tile | 1400×560 | Ready: `branding/store-assets/promo-marquee.jpg` (optional) |
